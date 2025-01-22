@@ -7,7 +7,7 @@ SPDX_LICENSE_LIST_FILE_TMP = /tmp/licenselist.json.new
 SPDX_LICENSE_LIST_JSON_URL = https://spdx.org/licenses/licenses.json
 
 licenselist:
-	wget -q -O $(SPDX_LICENSE_LIST_FILE_TMP) $(SPDX_LICENSE_LIST_JSON_URL1)
+	wget -q -O $(SPDX_LICENSE_LIST_FILE_TMP) $(SPDX_LICENSE_LIST_JSON_URL)
 	if ! diff $(SPDX_LICENSE_LIST_FILE) $(SPDX_LICENSE_LIST_FILE_TMP) >/dev/null 2>&1; \
 		then mv -v $(SPDX_LICENSE_LIST_FILE_TMP) $(SPDX_LICENSE_LIST_FILE); \
 	fi
