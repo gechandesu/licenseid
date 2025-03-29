@@ -24,8 +24,9 @@ jobs:
         run: |
           v doctor
           pushd licenseid
+          ls -alFh
           v doc -f html -m .
-          ln -s _docs/licenseid.html _docs/index.html
+          ln -vs _docs/licenseid.html _docs/index.html
           ls -alFh _docs/
           popd
 
