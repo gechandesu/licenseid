@@ -13,10 +13,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: Build docs
         run: |
-          ls -alFh
-          wget https://github.com/vlang/v/releases/latest/download/v_linux.zip
-          unzip v_linux.zip
-          ./v/v doc -m . -f html -o doc/
+          wget -q https://github.com/vlang/v/releases/latest/download/v_linux.zip -O /tmp/v_linux.zip
+          unzip -q /tmp/v_linux.zip -d /tmp
+          /tmp/v/v doc -m . -f html -o doc/
           ln -s doc/licenseid.html doc/index.html
           ls -alFh doc/
 
