@@ -14,13 +14,13 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup V
-        uses: vlang/setup-v@v1
-        with:
-          check-latest: true
+        run: |
+          wget -qO /tmp/v.zip https://github.com/vlang/v/releases/latest/download/v_linux.zip
+          unzip -q /tmp/v.zip -d /tmp
 
       - name: Build docs
         run: |
-          v doc -f html -m .
+          /tmp/v doc -f html -m .
           pushd _docs
           ln -vs licenseid.html index.html
           ls -alFh
