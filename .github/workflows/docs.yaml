@@ -11,11 +11,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Setup V
+        uses: vlang/setup-v@v1
+        with:
+          check-latest: true
+
       - name: Build docs
         run: |
-          wget -q https://github.com/vlang/v/releases/latest/download/v_linux.zip -O /tmp/v_linux.zip
-          unzip -q /tmp/v_linux.zip -d /tmp
-          /tmp/v/v doc -m . -f html -o doc/
+          v doc -m . -f html -o doc/
           ln -s doc/licenseid.html doc/index.html
           ls -alFh doc/
 
