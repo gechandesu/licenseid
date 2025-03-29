@@ -16,8 +16,9 @@ jobs:
       - name: Setup V
         run: |
           wget -qO /tmp/v.zip https://github.com/vlang/v/releases/latest/download/v_linux.zip
-          unzip -q /tmp/v.zip -d /usr/local/lib/
-          ln -vs /usr/local/lib/v/v /usr/local/bin/v
+          unzip -q /tmp/v.zip -d /tmp
+          echo /tmp/v >> "$GITHUB_PATH"
+          v doctor
 
       - name: Build docs
         run: |
