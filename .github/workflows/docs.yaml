@@ -12,8 +12,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          path: licenseid
 
       - name: Setup V
         uses: vlang/setup-v@v1
@@ -22,28 +20,29 @@ jobs:
 
       - name: Build docs
         run: |
-          pushd licenseid
-          ls -alFh
           v doc -f html -m .
           pushd _docs
           ln -vs licenseid.html index.html
           ls -alFh
-          popd
           popd
 
       - name: Upload static files as artifact
         id: deployment
         uses: actions/upload-pages-artifact@v3
         with:
-          path: licenseid/_docs/
+          path: _docs/
 
   deploy:
+    needs: build
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    needs: build
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+permissions:
+  contents: read
+  pages: write
