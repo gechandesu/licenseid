@@ -22,12 +22,13 @@ jobs:
 
       - name: Build docs
         run: |
-          v doctor
           pushd licenseid
           ls -alFh
           v doc -f html -m .
-          ln -vs _docs/licenseid.html _docs/index.html
-          ls -alFh _docs/
+          pushd _docs
+          ln -vs licenseid.html index.html
+          ls -alFh
+          popd
           popd
 
       - name: Upload static files as artifact
