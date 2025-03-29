@@ -16,11 +16,12 @@ jobs:
       - name: Setup V
         run: |
           wget -qO /tmp/v.zip https://github.com/vlang/v/releases/latest/download/v_linux.zip
-          unzip -q /tmp/v.zip -d /tmp
+          unzip -q /tmp/v.zip -d /usr/local/lib/
+          ln -vs /usr/local/lib/v/v /usr/local/bin/v
 
       - name: Build docs
         run: |
-          /tmp/v doc -f html -m .
+          v doc -f html -m .
           pushd _docs
           ln -vs licenseid.html index.html
           ls -alFh
