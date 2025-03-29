@@ -10,7 +10,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          path: licanseid
 
       - name: Setup V
         uses: vlang/setup-v@v1
@@ -19,15 +22,17 @@ jobs:
 
       - name: Build docs
         run: |
-          v doc -m . -f html -o doc/
-          ln -s doc/licenseid.html doc/index.html
-          ls -alFh doc/
+          pushd licenseid
+          v doc -f html -m .
+          ln -s _docs/licenseid.html _docs/index.html
+          ls -alFh _docs/
+          popd
 
       - name: Upload static files as artifact
         id: deployment
         uses: actions/upload-pages-artifact@v3
         with:
-          path: doc/
+          path: licenseid/_docs/
 
   deploy:
     environment:
