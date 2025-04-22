@@ -3,7 +3,7 @@ module licenseid
 import json
 import net.http
 
-const licenses_file = $embed_file('licenselist.min.json')
+const licenses_file = $embed_file('licenses.min.json')
 const licenses = json.decode(LicenseList, licenses_file.to_string()) or { LicenseList{} }
 
 struct LicenseList {
