@@ -47,7 +47,7 @@ pub:
 }
 
 // details fetches the license details object from SPDX data file using the
-// details_url. Requires access to public network.
+// details_url. Requires access to internet.
 pub fn (l License) details() !LicenseDetails {
 	response := http.get(l.details_url)!
 	details := json.decode(LicenseDetails, response.body)!
